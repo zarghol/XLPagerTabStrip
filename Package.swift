@@ -1,17 +1,13 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.1
 import PackageDescription
 
 let package = Package(
     name: "XLPagerTabStrip",
-    // platforms: [.iOS("9.3")],
+    platforms: [.iOS(.v9)],
     products: [
         .library(name: "XLPagerTabStrip", targets: ["XLPagerTabStrip"])
     ],
     targets: [
-        .target(
-            name: "XLPagerTabStrip",
-            path: "Sources",
-            exclude: ["FXPageControl.h", "FXPageControl.m"]
-        )
+        .target(name: "XLPagerTabStrip", path: "Sources")
     ]
 )

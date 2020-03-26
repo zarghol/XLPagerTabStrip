@@ -155,13 +155,11 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
         return titleScrollView
     }()
 
-    private lazy var pageControl: FXPageControl = { [unowned self] in
-        let pageControl = FXPageControl()
+    private lazy var pageControl: UIPageControl = { [unowned self] in
+        let pageControl = UIPageControl()
         pageControl.backgroundColor = .clear
-        pageControl.dotSize = 3.8
-        pageControl.dotSpacing = 4.0
-        pageControl.dotColor = self.settings.style.dotColor
-        pageControl.selectedDotColor = self.settings.style.selectedDotColor
+        pageControl.pageIndicatorTintColor = self.settings.style.dotColor
+        pageControl.currentPageIndicatorTintColor = self.settings.style.selectedDotColor
         pageControl.isUserInteractionEnabled = false
         return pageControl
     }()
@@ -211,9 +209,7 @@ open class TwitterPagerTabStripViewController: PagerTabStripViewController, Page
 
         pageControl.numberOfPages = childTitleLabels.count
         pageControl.currentPage = currentIndex
-        let viewSize = pageControl.sizeForNumber(ofPages: childTitleLabels.count)
-        let originX = distance - viewSize.width / 2
-        pageControl.frame = CGRect(x: originX, y: navBarHeight - 10, width: viewSize.width, height: viewSize.height)
+        pageControl.sizeToFit()
     }
 
     private func setAlphaWith(offset: CGFloat, andDistance distance: CGFloat) {
